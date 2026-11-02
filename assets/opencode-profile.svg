@@ -1,0 +1,631 @@
+<svg viewBox="0 0 894 536" width="894" height="536" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Outrun Synthwave Twilight Sky Behind Translucent OpenCode Terminal -->
+    <linearGradient id="skyBg" x1="447" y1="0" x2="447" y2="536" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#090412" />
+      <stop offset="38%" stop-color="#1C0836" />
+      <stop offset="61%" stop-color="#4A0F54" />
+      <stop offset="63%" stop-color="#150626" />
+      <stop offset="100%" stop-color="#080310" />
+    </linearGradient>
+
+    <radialGradient id="sunHalo" cx="350" cy="268" r="290" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FF2A85" stop-opacity="0.46" />
+      <stop offset="45%" stop-color="#FF7B39" stop-opacity="0.18" />
+      <stop offset="100%" stop-color="#090412" stop-opacity="0" />
+    </radialGradient>
+
+    <linearGradient id="outrunSun" x1="350" y1="124" x2="350" y2="334" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFF38A" />
+      <stop offset="46%" stop-color="#FF7B39" />
+      <stop offset="100%" stop-color="#FF1E7A" />
+    </linearGradient>
+
+    <linearGradient id="gridLine" x1="350" y1="334" x2="350" y2="536" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FF2A85" stop-opacity="0.62" />
+      <stop offset="100%" stop-color="#00F5FF" stop-opacity="0.34" />
+    </linearGradient>
+
+    <linearGradient id="winBorder" x1="0" y1="0" x2="894" y2="536" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FF2A85" stop-opacity="0.65" />
+      <stop offset="50%" stop-color="#9B5DE5" stop-opacity="0.38" />
+      <stop offset="100%" stop-color="#00F5FF" stop-opacity="0.65" />
+    </linearGradient>
+
+    <linearGradient id="synthGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#FFE66D" />
+      <stop offset="50%" stop-color="#FF2A85" />
+      <stop offset="100%" stop-color="#00F5FF" />
+    </linearGradient>
+
+    <clipPath id="winClip">
+      <rect x="1" y="1" width="892" height="534" rx="11" />
+    </clipPath>
+
+    <clipPath id="horizonClip">
+      <rect x="0" y="0" width="894" height="334" />
+    </clipPath>
+
+    <clipPath id="sunClip">
+      <circle cx="350" cy="238" r="108" />
+    </clipPath>
+  </defs>
+
+  <style><![CDATA[
+    .mono {
+      font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+    .sans {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    }
+
+    /* ===================================================================
+       22-Second OpenCode Live Session Timeline
+       =================================================================== */
+
+    /* Phase 1 (0.0s -> 1.5s): Type question in bottom prompt & hit Enter */
+    .bt-phase {
+      opacity: 0;
+      animation: showBtPhase 22s linear infinite;
+    }
+    @keyframes showBtPhase {
+      0%, 6.8%   { opacity: 1; }
+      6.9%, 100% { opacity: 0; }
+    }
+
+    .bt-mask {
+      animation: typeBottom 22s steps(38, end) infinite;
+    }
+    @keyframes typeBottom {
+      0%, 0.6%    { transform: translateX(0px); }
+      6.1%, 100%  { transform: translateX(275px); }
+    }
+
+    .bt-cursor {
+      animation: moveBtCursor 22s steps(38, end) infinite;
+    }
+    @keyframes moveBtCursor {
+      0%, 0.6%    { transform: translateX(0px); }
+      6.1%, 100%  { transform: translateX(275px); }
+    }
+
+    /* Bottom input working state (1.5s -> 6.6s) */
+    .input-working {
+      opacity: 0;
+      animation: showWorkInput 22s linear infinite;
+    }
+    @keyframes showWorkInput {
+      0%, 6.8%    { opacity: 0; }
+      7.1%, 29.8% { opacity: 1; }
+      30.3%, 100% { opacity: 0; }
+    }
+
+    /* Bottom input idle state (6.7s -> 21.5s) */
+    .input-idle {
+      animation: showIdleInput 22s linear infinite;
+    }
+    @keyframes showIdleInput {
+      0%, 29.8%  { opacity: 0; }
+      30.4%, 97% { opacity: 1; }
+      98.8%, 100%{ opacity: 0; }
+    }
+
+    /* User message snaps into chat feed on Enter */
+    .user-msg {
+      animation: snapUserMsg 22s ease-out infinite;
+    }
+    @keyframes snapUserMsg {
+      0%, 6.7%   { opacity: 0; transform: translateY(6px); }
+      7.4%, 97%  { opacity: 1; transform: translateY(0); }
+      98.8%, 100%{ opacity: 0; transform: translateY(0); }
+    }
+
+    /* Thinking & OpenCode tool execution trace */
+    .trace-bar {
+      animation: showTraceBar 22s linear infinite;
+    }
+    @keyframes showTraceBar {
+      0%, 7.3%   { opacity: 0; }
+      7.9%, 97%  { opacity: 1; }
+      98.8%, 100%{ opacity: 0; }
+    }
+
+    .think-active {
+      opacity: 0;
+      animation: showThinkActive 22s linear infinite;
+    }
+    @keyframes showThinkActive {
+      0%, 7.3%    { opacity: 0; }
+      7.9%, 18.6% { opacity: 1; }
+      19.0%, 100% { opacity: 0; }
+    }
+
+    .spin-star {
+      animation: pulseGold 0.65s ease-in-out infinite;
+    }
+    @keyframes pulseGold {
+      0%, 100% { opacity: 1; }
+      50%      { opacity: 0.25; }
+    }
+
+    .think-done {
+      animation: showThinkDone 22s linear infinite;
+    }
+    @keyframes showThinkDone {
+      0%, 18.7%  { opacity: 0; }
+      19.2%, 97% { opacity: 1; }
+      98.8%, 100%{ opacity: 0; }
+    }
+
+    .t-row-1 { animation: popRow1 22s ease-out infinite; }
+    .t-row-2 { animation: popRow2 22s ease-out infinite; }
+    .t-row-3 { animation: popRow3 22s ease-out infinite; }
+
+    @keyframes popRow1 {
+      0%, 9.6%   { opacity: 0; transform: translateY(3px); }
+      10.8%, 97% { opacity: 1; transform: translateY(0); }
+      98.8%, 100%{ opacity: 0; transform: translateY(0); }
+    }
+    @keyframes popRow2 {
+      0%, 12.8%  { opacity: 0; transform: translateY(3px); }
+      14.0%, 97% { opacity: 1; transform: translateY(0); }
+      98.8%, 100%{ opacity: 0; transform: translateY(0); }
+    }
+    @keyframes popRow3 {
+      0%, 15.8%  { opacity: 0; transform: translateY(3px); }
+      17.0%, 97% { opacity: 1; transform: translateY(0); }
+      98.8%, 100%{ opacity: 0; transform: translateY(0); }
+    }
+
+    /* Streamed response blocks & row-by-row tech pills */
+    .ans-head    { animation: streamHead 22s ease-out infinite; }
+    .ans-summary { animation: streamSummary 22s ease-out infinite; }
+    .ans-matrix  { animation: streamMatrix 22s ease-out infinite; }
+    .m-row-1     { animation: streamR1 22s ease-out infinite; }
+    .m-row-2     { animation: streamR2 22s ease-out infinite; }
+    .m-row-3     { animation: streamR3 22s ease-out infinite; }
+    .m-row-4     { animation: streamR4 22s ease-out infinite; }
+    .m-row-5     { animation: streamR5 22s ease-out infinite; }
+
+    @keyframes streamHead {
+      0%, 19.5%  { opacity: 0; transform: translateY(4px); }
+      20.9%, 97% { opacity: 1; transform: translateY(0); }
+      98.8%, 100%{ opacity: 0; transform: translateY(0); }
+    }
+    @keyframes streamSummary {
+      0%, 21.6%  { opacity: 0; transform: translateY(4px); }
+      23.2%, 97% { opacity: 1; transform: translateY(0); }
+      98.8%, 100%{ opacity: 0; transform: translateY(0); }
+    }
+    @keyframes streamMatrix {
+      0%, 23.6%  { opacity: 0; }
+      24.8%, 97% { opacity: 1; }
+      98.8%, 100%{ opacity: 0; }
+    }
+    @keyframes streamR1 {
+      0%, 24.0%  { opacity: 0; transform: translateY(3px); }
+      25.2%, 97% { opacity: 1; transform: translateY(0); }
+      98.8%, 100%{ opacity: 0; transform: translateY(0); }
+    }
+    @keyframes streamR2 {
+      0%, 25.1%  { opacity: 0; transform: translateY(3px); }
+      26.3%, 97% { opacity: 1; transform: translateY(0); }
+      98.8%, 100%{ opacity: 0; transform: translateY(0); }
+    }
+    @keyframes streamR3 {
+      0%, 26.2%  { opacity: 0; transform: translateY(3px); }
+      27.4%, 97% { opacity: 1; transform: translateY(0); }
+      98.8%, 100%{ opacity: 0; transform: translateY(0); }
+    }
+    @keyframes streamR4 {
+      0%, 27.3%  { opacity: 0; transform: translateY(3px); }
+      28.5%, 97% { opacity: 1; transform: translateY(0); }
+      98.8%, 100%{ opacity: 0; transform: translateY(0); }
+    }
+    @keyframes streamR5 {
+      0%, 28.4%  { opacity: 0; transform: translateY(3px); }
+      29.6%, 97% { opacity: 1; transform: translateY(0); }
+      98.8%, 100%{ opacity: 0; transform: translateY(0); }
+    }
+
+    /* Sidebar session title (New session -> Who is @verte21?) & Context */
+    .sess-new {
+      opacity: 0;
+      animation: showSessNew 22s linear infinite;
+    }
+    @keyframes showSessNew {
+      0%, 18.6%   { opacity: 1; }
+      19.1%, 98.8%{ opacity: 0; }
+      99.3%, 100% { opacity: 1; }
+    }
+
+    .sess-titled {
+      animation: showSessTitled 22s ease-out infinite;
+    }
+    @keyframes showSessTitled {
+      0%, 19.0%  { opacity: 0; transform: translateY(2px); }
+      19.8%, 97% { opacity: 1; transform: translateY(0); }
+      98.8%, 100%{ opacity: 0; transform: translateY(0); }
+    }
+
+    .ctx-zero {
+      opacity: 0;
+      animation: showCtxZero 22s linear infinite;
+    }
+    @keyframes showCtxZero {
+      0%, 18.6%   { opacity: 1; }
+      19.1%, 98.8%{ opacity: 0; }
+      99.3%, 100% { opacity: 1; }
+    }
+
+    .ctx-used {
+      animation: showCtxUsed 22s linear infinite;
+    }
+    @keyframes showCtxUsed {
+      0%, 19.0%  { opacity: 0; }
+      19.8%, 97% { opacity: 1; }
+      98.8%, 100%{ opacity: 0; }
+    }
+
+    /* Sidebar context bar GPU scaleX */
+    .ctx-bar {
+      animation: growCtx 22s ease-out infinite;
+    }
+    @keyframes growCtx {
+      0%, 18.8%  { transform: scaleX(0); }
+      23.5%      { transform: scaleX(0.55); }
+      29.5%, 97% { transform: scaleX(1); }
+      98.8%, 100%{ transform: scaleX(0); }
+    }
+
+    .idle-cursor {
+      animation: blinkCur 1.05s steps(1, end) infinite;
+    }
+    @keyframes blinkCur {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+
+    .sun-scan {
+      animation: scanDrift 3.6s linear infinite;
+    }
+    @keyframes scanDrift {
+      0%   { transform: translateY(0px); }
+      100% { transform: translateY(-14px); }
+    }
+  ]]></style>
+
+  <!-- ===================================================================== -->
+  <!-- LAYER 0: OUTRUN SYNTHWAVE BACKDROP BEHIND TRANSLUCENT TERMINAL        -->
+  <!-- ===================================================================== -->
+  <g clip-path="url(#winClip)">
+    <rect x="0" y="0" width="894" height="536" fill="url(#skyBg)" />
+    <rect x="0" y="0" width="894" height="536" fill="url(#sunHalo)" />
+
+    <g fill="#F8FAFC" opacity="0.55">
+      <circle cx="82" cy="68" r="1.1" />
+      <circle cx="164" cy="96" r="1.3" />
+      <circle cx="242" cy="62" r="1.0" />
+      <circle cx="492" cy="76" r="1.2" />
+      <circle cx="576" cy="108" r="1.0" />
+      <circle cx="748" cy="84" r="1.1" />
+      <circle cx="826" cy="64" r="1.0" />
+    </g>
+
+    <!-- Outrun Sun -->
+    <g clip-path="url(#horizonClip)">
+      <g clip-path="url(#sunClip)" opacity="0.34">
+        <circle cx="350" cy="238" r="108" fill="url(#outrunSun)" />
+        <g class="sun-scan">
+          <rect x="220" y="224" width="260" height="4" fill="#260A3E" />
+          <rect x="220" y="238" width="260" height="5" fill="#2E0B44" />
+          <rect x="220" y="252" width="260" height="6" fill="#360D4A" />
+          <rect x="220" y="266" width="260" height="7" fill="#3E0E4C" />
+          <rect x="220" y="280" width="260" height="8" fill="#460F52" />
+          <rect x="220" y="294" width="260" height="9" fill="#4A0F54" />
+          <rect x="220" y="308" width="260" height="10" fill="#4A0F54" />
+          <rect x="220" y="322" width="260" height="10" fill="#4A0F54" />
+          <rect x="220" y="336" width="260" height="10" fill="#4A0F54" />
+        </g>
+      </g>
+    </g>
+
+    <!-- Canyon Mountains (y=334) -->
+    <polygon points="0,334 58,274 118,312 184,258 258,334" fill="#100520" opacity="0.82" />
+    <polyline points="0,334 58,274 118,312 184,258 258,334" stroke="#FF2A85" stroke-opacity="0.48" stroke-width="1.2" fill="none" />
+
+    <polygon points="438,334 514,266 580,306 650,254 732,310 810,272 894,334" fill="#100520" opacity="0.82" />
+    <polyline points="438,334 514,266 580,306 650,254 732,310 810,272 894,334" stroke="#00F5FF" stroke-opacity="0.38" stroke-width="1.2" fill="none" />
+
+    <!-- Perspective Grid Floor (y=334..536) -->
+    <g stroke="url(#gridLine)" stroke-width="1" opacity="0.68">
+      <line x1="350" y1="334" x2="-150" y2="536" />
+      <line x1="350" y1="334" x2="15" y2="536" />
+      <line x1="350" y1="334" x2="155" y2="536" />
+      <line x1="350" y1="334" x2="255" y2="536" />
+      <line x1="350" y1="334" x2="350" y2="536" />
+      <line x1="350" y1="334" x2="445" y2="536" />
+      <line x1="350" y1="334" x2="545" y2="536" />
+      <line x1="350" y1="334" x2="675" y2="536" />
+      <line x1="350" y1="334" x2="840" y2="536" />
+      <line x1="350" y1="334" x2="1030" y2="536" />
+
+      <line x1="0" y1="334" x2="894" y2="334" stroke="#FF2A85" stroke-opacity="0.70" stroke-width="1.4" />
+      <line x1="0" y1="349" x2="894" y2="349" />
+      <line x1="0" y1="368" x2="894" y2="368" />
+      <line x1="0" y1="393" x2="894" y2="393" />
+      <line x1="0" y1="425" x2="894" y2="425" />
+      <line x1="0" y1="468" x2="894" y2="468" />
+    </g>
+
+    <!-- Frosted Terminal Glass Overlay -->
+    <rect x="0" y="36" width="680" height="408" fill="#0B0614" fill-opacity="0.52" />
+    <rect x="680" y="36" width="214" height="408" fill="#090511" fill-opacity="0.72" />
+    <rect x="0" y="444" width="894" height="60" fill="#0B0614" fill-opacity="0.78" />
+  </g>
+
+  <!-- Minimal Window Frame -->
+  <rect x="0.75" y="0.75" width="892.5" height="534.5" rx="11" stroke="url(#winBorder)" stroke-width="1.25" />
+
+  <!-- ===================================================================== -->
+  <!-- MINIMAL TITLEBAR                                                      -->
+  <!-- ===================================================================== -->
+  <path d="M 1.5 12 A 10.5 10.5 0 0 1 12 1.5 L 882 1.5 A 10.5 10.5 0 0 1 892.5 12 L 892.5 36 L 1.5 36 Z" fill="#11091F" fill-opacity="0.95" />
+  <line x1="1.5" y1="36" x2="892.5" y2="36" stroke="#FFFFFF" stroke-opacity="0.08" stroke-width="1" />
+
+  <circle cx="21" cy="18.5" r="5" fill="#FF5F56" opacity="0.85" />
+  <circle cx="37" cy="18.5" r="5" fill="#FFBD2E" opacity="0.85" />
+  <circle cx="53" cy="18.5" r="5" fill="#27C93F" opacity="0.85" />
+
+  <text x="418" y="23" class="mono" font-size="12" fill="#94A3B8">open</text>
+  <text x="447" y="23" class="mono" font-size="12" font-weight="700" fill="#F8FAFC">code</text>
+
+  <!-- Vertical Sidebar Divider -->
+  <line x1="680" y1="36" x2="680" y2="444" stroke="#FFFFFF" stroke-opacity="0.08" stroke-width="1" />
+
+  <!-- ===================================================================== -->
+  <!-- MAIN CONVERSATION FEED (LEFT PANE: x=0..680)                          -->
+  <!-- ===================================================================== -->
+
+  <!-- 1. USER MESSAGE -->
+  <g class="user-msg">
+    <rect x="20" y="48" width="646" height="32" rx="4" fill="#180D2B" fill-opacity="0.82" />
+    <rect x="20" y="48" width="3" height="32" rx="1.5" fill="#FF2A85" />
+    <text x="36" y="68.5" class="mono" font-size="12" fill="#F8FAFC">who is</text>
+    <text x="86.6" y="68.5" class="mono" font-size="12" font-weight="700" fill="#00F5FF">@verte21</text>
+    <text x="151.6" y="68.5" class="mono" font-size="12" fill="#F8FAFC">and what is his stack?</text>
+  </g>
+
+  <!-- 2. THINKING & REALISTIC OPENCODE v2 TOOL CALLS -->
+  <g class="trace-bar">
+    <rect x="21" y="90" width="2" height="72" rx="1" fill="#94A3B8" fill-opacity="0.28" />
+  </g>
+
+  <g class="think-active">
+    <text x="36" y="102" class="mono spin-star" font-size="11.5" font-weight="700" fill="#FFE66D">✻</text>
+    <text x="50" y="102" class="mono" font-size="11.2" font-style="italic" fill="#94A3B8">Thinking...</text>
+  </g>
+
+  <g class="think-done">
+    <text x="36" y="102" class="mono" font-size="11.2" fill="#64748B">✻ Thought for 1.8s</text>
+  </g>
+
+  <g class="t-row-1">
+    <text x="36" y="121" class="mono" font-size="11.2" fill="#94A3B8">→ WebFetch</text>
+    <text x="114" y="121" class="mono" font-size="11.2" fill="#CBD5E1">https://github.com/verte21</text>
+  </g>
+
+  <g class="t-row-2">
+    <text x="36" y="140" class="mono" font-size="11.2" fill="#94A3B8">→ Glob</text>
+    <text x="114" y="140" class="mono" font-size="11.2" fill="#CBD5E1">*/{package.json,go.mod,sst.config.ts}</text>
+  </g>
+
+  <g class="t-row-3">
+    <text x="36" y="159" class="mono" font-size="11.2" fill="#94A3B8">→ Read</text>
+    <text x="114" y="159" class="mono" font-size="11.2" fill="#CBD5E1">about.md</text>
+  </g>
+
+  <!-- 3. STREAMED ASSISTANT RESPONSE -->
+  <g class="ans-head">
+    <rect x="20" y="176" width="3" height="256" rx="1.5" fill="#00F5FF" />
+    <text x="36" y="192" class="sans" font-size="14.5" font-weight="700" fill="url(#synthGrad)">Rafał Sikorski (@verte21)</text>
+    <text x="220" y="192" class="sans" font-size="13" font-weight="500" fill="#E2E8F0">— Fullstack &amp; Cloud Engineer · Poland</text>
+  </g>
+
+  <g class="ans-summary">
+    <text x="36" y="215" class="mono" font-size="11.1" fill="#CBD5E1">Passionate about programming and building things with a strong can-do attitude.</text>
+    <text x="36" y="234" class="mono" font-size="11.1" fill="#94A3B8">Off the keyboard:</text>
+    <text x="156.3" y="234" class="mono" font-size="11.1" fill="#CBD5E1">football, flying FPV drones, biking, and cooking.</text>
+  </g>
+
+  <!-- Streamed Tech & Tooling Matrix (x=36..666, width=630) -->
+  <g class="ans-matrix">
+    <rect x="36" y="252" width="630" height="180" rx="6" fill="#0B0516" fill-opacity="0.80" stroke="#FFFFFF" stroke-opacity="0.11" stroke-width="1" />
+    <line x1="150" y1="252" x2="150" y2="432" stroke="#FFFFFF" stroke-opacity="0.08" stroke-width="1" />
+    <line x1="36" y1="288" x2="666" y2="288" stroke="#FFFFFF" stroke-opacity="0.07" stroke-width="1" />
+    <line x1="36" y1="324" x2="666" y2="324" stroke="#FFFFFF" stroke-opacity="0.07" stroke-width="1" />
+    <line x1="36" y1="360" x2="666" y2="360" stroke="#FFFFFF" stroke-opacity="0.07" stroke-width="1" />
+    <line x1="36" y1="396" x2="666" y2="396" stroke="#FFFFFF" stroke-opacity="0.07" stroke-width="1" />
+  </g>
+
+  <!-- Row 1: AI & Agents -->
+  <g class="m-row-1">
+    <text x="48" y="273.8" class="mono" font-size="10.8" font-weight="700" fill="#FFE66D">AI &amp; Agents</text>
+    <rect x="160.0" y="259.0" width="34.0" height="22" rx="4" fill="#170C2B" fill-opacity="0.92" stroke="#FFE66D" stroke-opacity="0.28" stroke-width="1" />
+    <text x="177.0" y="273.8" text-anchor="middle" class="mono" font-size="10.5" fill="#F1F5F9">MCP</text>
+    <rect x="199.5" y="259.0" width="34.0" height="22" rx="4" fill="#170C2B" fill-opacity="0.92" stroke="#FFE66D" stroke-opacity="0.28" stroke-width="1" />
+    <text x="216.5" y="273.8" text-anchor="middle" class="mono" font-size="10.5" fill="#F1F5F9">RAG</text>
+    <rect x="239.0" y="259.0" width="71.9" height="22" rx="4" fill="#170C2B" fill-opacity="0.92" stroke="#FFE66D" stroke-opacity="0.28" stroke-width="1" />
+    <text x="275.0" y="273.8" text-anchor="middle" class="mono" font-size="10.5" fill="#F1F5F9">LangChain</text>
+    <rect x="316.4" y="259.0" width="97.2" height="22" rx="4" fill="#170C2B" fill-opacity="0.92" stroke="#FFE66D" stroke-opacity="0.28" stroke-width="1" />
+    <text x="365.0" y="273.8" text-anchor="middle" class="mono" font-size="10.5" fill="#F1F5F9">Vector Search</text>
+    <rect x="419.1" y="259.0" width="90.9" height="22" rx="4" fill="#170C2B" fill-opacity="0.92" stroke="#FFE66D" stroke-opacity="0.28" stroke-width="1" />
+    <text x="464.6" y="273.8" text-anchor="middle" class="mono" font-size="10.5" fill="#F1F5F9">Agent Skills</text>
+    <rect x="515.5" y="259.0" width="90.9" height="22" rx="4" fill="#170C2B" fill-opacity="0.92" stroke="#FFE66D" stroke-opacity="0.28" stroke-width="1" />
+    <text x="561.0" y="273.8" text-anchor="middle" class="mono" font-size="10.5" fill="#F1F5F9">Tool Calling</text>
+  </g>
+
+  <!-- Row 2: Languages -->
+  <g class="m-row-2">
+    <text x="48" y="309.8" class="mono" font-size="10.8" font-weight="700" fill="#C084FC">Languages</text>
+    <rect x="160.0" y="295.0" width="78.2" height="22" rx="4" fill="#170C2B" fill-opacity="0.92" stroke="#C084FC" stroke-opacity="0.28" stroke-width="1" />
+    <text x="199.1" y="309.8" text-anchor="middle" class="mono" font-size="10.5" fill="#F1F5F9">TypeScript</text>
+    <rect x="243.7" y="295.0" width="27.6" height="22" rx="4" fill="#170C2B" fill-opacity="0.92" stroke="#C084FC" stroke-opacity="0.28" stroke-width="1" />
+    <text x="257.5" y="309.8" text-anchor="middle" class="mono" font-size="10.5" fill="#F1F5F9">Go</text>
+    <rect x="276.8" y="295.0" width="52.9" height="22" rx="4" fill="#170C2B" fill-opacity="0.92" stroke="#C084FC" stroke-opacity="0.28" stroke-width="1" />
+    <text x="303.2" y="309.8" text-anchor="middle" class="mono" font-size="10.5" fill="#F1F5F9">Python</text>
+    <rect x="335.2" y="295.0" width="34.0" height="22" rx="4" fill="#170C2B" fill-opacity="0.92" stroke="#C084FC" stroke-opacity="0.28" stroke-width="1" />
+    <text x="352.2" y="309.8" text-anchor="middle" class="mono" font-size="10.5" fill="#F1F5F9">Lua</text>
+  </g>
+
+  <!-- Row 3: Backend & DB -->
+  <g class="m-row-3">
+    <text x="48" y="345.8" class="mono" font-size="10.8" font-weight="700" fill="#00F5FF">Backend &amp; DB</text>
+    <rect x="160.0" y="331.0" width="59.3" height="22" rx="4" fill="#170C2B" fill-opacity="0.92" stroke="#00F5FF" stroke-opacity="0.28" stroke-width="1" />
+    <text x="189.6" y="345.8" text-anchor="middle" class="mono" font-size="10.5" fill="#F1F5F9">Node.js</text>
+    <rect x="224.8" y="331.0" width="52.9" height="22" rx="4" fill="#170C2B" fill-opacity="0.92" stroke="#00F5FF" stroke-opacity="0.28" stroke-width="1" />
+    <text x="251.2" y="345.8" text-anchor="middle" class="mono" font-size="10.5" fill="#F1F5F9">NestJS</text>
+    <rect x="283.2" y="331.0" width="59.3" height="22" rx="4" fill="#170C2B" fill-opacity="0.92" stroke="#00F5FF" stroke-opacity="0.28" stroke-width="1" />
+    <text x="312.8" y="345.8" text-anchor="middle" class="mono" font-size="10.5" fill="#F1F5F9">GraphQL</text>
+    <rect x="348.0" y="331.0" width="78.2" height="22" rx="4" fill="#170C2B" fill-opacity="0.92" stroke="#00F5FF" stroke-opacity="0.28" stroke-width="1" />
+    <text x="387.1" y="345.8" text-anchor="middle" class="mono" font-size="10.5" fill="#F1F5F9">PostgreSQL</text>
+    <rect x="431.7" y="331.0" width="65.6" height="22" rx="4" fill="#170C2B" fill-opacity="0.92" stroke="#00F5FF" stroke-opacity="0.28" stroke-width="1" />
+    <text x="464.5" y="345.8" text-anchor="middle" class="mono" font-size="10.5" fill="#F1F5F9">DynamoDB</text>
+    <rect x="502.8" y="331.0" width="46.6" height="22" rx="4" fill="#170C2B" fill-opacity="0.92" stroke="#00F5FF" stroke-opacity="0.28" stroke-width="1" />
+    <text x="526.1" y="345.8" text-anchor="middle" class="mono" font-size="10.5" fill="#F1F5F9">Redis</text>
+  </g>
+
+  <!-- Row 4: Cloud & Infra -->
+  <g class="m-row-4">
+    <text x="48" y="381.8" class="mono" font-size="10.8" font-weight="700" fill="#38BDF8">Cloud &amp; Infra</text>
+    <rect x="160.0" y="367.0" width="34.0" height="22" rx="4" fill="#170C2B" fill-opacity="0.92" stroke="#38BDF8" stroke-opacity="0.28" stroke-width="1" />
+    <text x="177.0" y="381.8" text-anchor="middle" class="mono" font-size="10.5" fill="#F1F5F9">AWS</text>
+    <rect x="199.5" y="367.0" width="34.0" height="22" rx="4" fill="#170C2B" fill-opacity="0.92" stroke="#38BDF8" stroke-opacity="0.28" stroke-width="1" />
+    <text x="216.5" y="381.8" text-anchor="middle" class="mono" font-size="10.5" fill="#F1F5F9">GCP</text>
+    <rect x="239.0" y="367.0" width="78.2" height="22" rx="4" fill="#170C2B" fill-opacity="0.92" stroke="#38BDF8" stroke-opacity="0.28" stroke-width="1" />
+    <text x="278.1" y="381.8" text-anchor="middle" class="mono" font-size="10.5" fill="#F1F5F9">Cloudflare</text>
+    <rect x="322.7" y="367.0" width="52.9" height="22" rx="4" fill="#170C2B" fill-opacity="0.92" stroke="#38BDF8" stroke-opacity="0.28" stroke-width="1" />
+    <text x="349.2" y="381.8" text-anchor="middle" class="mono" font-size="10.5" fill="#F1F5F9">Docker</text>
+    <rect x="381.1" y="367.0" width="71.9" height="22" rx="4" fill="#170C2B" fill-opacity="0.92" stroke="#38BDF8" stroke-opacity="0.28" stroke-width="1" />
+    <text x="417.0" y="381.8" text-anchor="middle" class="mono" font-size="10.5" fill="#F1F5F9">Terraform</text>
+    <rect x="458.5" y="367.0" width="34.0" height="22" rx="4" fill="#170C2B" fill-opacity="0.92" stroke="#38BDF8" stroke-opacity="0.28" stroke-width="1" />
+    <text x="475.5" y="381.8" text-anchor="middle" class="mono" font-size="10.5" fill="#F1F5F9">SST</text>
+  </g>
+
+  <!-- Row 5: Frontend & UI -->
+  <g class="m-row-5">
+    <text x="48" y="417.8" class="mono" font-size="10.8" font-weight="700" fill="#FF79C6">Frontend &amp; UI</text>
+    <rect x="160.0" y="403.0" width="45.6" height="22" rx="4" fill="#170C2B" fill-opacity="0.92" stroke="#FF79C6" stroke-opacity="0.28" stroke-width="1" />
+    <text x="182.8" y="417.8" text-anchor="middle" class="mono" font-size="10.5" fill="#F1F5F9">React</text>
+    <rect x="210.6" y="403.0" width="33.0" height="22" rx="4" fill="#170C2B" fill-opacity="0.92" stroke="#FF79C6" stroke-opacity="0.28" stroke-width="1" />
+    <text x="227.1" y="417.8" text-anchor="middle" class="mono" font-size="10.5" fill="#F1F5F9">Vue</text>
+    <rect x="248.6" y="403.0" width="58.3" height="22" rx="4" fill="#170C2B" fill-opacity="0.92" stroke="#FF79C6" stroke-opacity="0.28" stroke-width="1" />
+    <text x="277.8" y="417.8" text-anchor="middle" class="mono" font-size="10.5" fill="#F1F5F9">Next.js</text>
+    <rect x="311.9" y="403.0" width="39.3" height="22" rx="4" fill="#170C2B" fill-opacity="0.92" stroke="#FF79C6" stroke-opacity="0.28" stroke-width="1" />
+    <text x="331.6" y="417.8" text-anchor="middle" class="mono" font-size="10.5" fill="#F1F5F9">Nuxt</text>
+    <rect x="356.2" y="403.0" width="64.6" height="22" rx="4" fill="#170C2B" fill-opacity="0.92" stroke="#FF79C6" stroke-opacity="0.28" stroke-width="1" />
+    <text x="388.5" y="417.8" text-anchor="middle" class="mono" font-size="10.5" fill="#F1F5F9">Tailwind</text>
+    <rect x="425.8" y="403.0" width="70.9" height="22" rx="4" fill="#170C2B" fill-opacity="0.92" stroke="#FF79C6" stroke-opacity="0.28" stroke-width="1" />
+    <text x="461.2" y="417.8" text-anchor="middle" class="mono" font-size="10.5" fill="#F1F5F9">shadcn/ui</text>
+    <rect x="501.7" y="403.0" width="77.2" height="22" rx="4" fill="#170C2B" fill-opacity="0.92" stroke="#FF79C6" stroke-opacity="0.28" stroke-width="1" />
+    <text x="540.3" y="417.8" text-anchor="middle" class="mono" font-size="10.5" fill="#F1F5F9">Playwright</text>
+    <rect x="583.9" y="403.0" width="70.9" height="22" rx="4" fill="#170C2B" fill-opacity="0.92" stroke="#FF79C6" stroke-opacity="0.28" stroke-width="1" />
+    <text x="619.4" y="417.8" text-anchor="middle" class="mono" font-size="10.5" fill="#F1F5F9">Puppeteer</text>
+  </g>
+
+  <!-- ===================================================================== -->
+  <!-- REALISTIC MINIMAL OPENCODE SIDEBAR (x=680..894)                       -->
+  <!-- ===================================================================== -->
+  <g>
+    <!-- Workspace + Session Directly Underneath -->
+    <text x="696" y="60" class="mono" font-size="11" fill="#64748B">~/code/verte21</text>
+    <text x="696" y="80" class="sans sess-new" font-size="12.5" font-weight="500" fill="#94A3B8">New session</text>
+    <text x="696" y="80" class="sans sess-titled" font-size="12.5" font-weight="600" fill="#F1F5F9">Who is @verte21?</text>
+
+    <line x1="696" y1="96" x2="876" y2="96" stroke="#FFFFFF" stroke-opacity="0.07" />
+
+    <!-- Context -->
+    <text x="696" y="117" class="sans" font-size="11.5" font-weight="600" fill="#94A3B8">Context</text>
+    <g class="ctx-zero">
+      <text x="696" y="136" class="mono" font-size="11" fill="#94A3B8">0 tokens</text>
+      <text x="876" y="136" text-anchor="end" class="mono" font-size="11" fill="#64748B">0%</text>
+      <text x="696" y="165" class="mono" font-size="10.8" fill="#64748B">$0.00 spent</text>
+    </g>
+    <g class="ctx-used">
+      <text x="696" y="136" class="mono" font-size="11" fill="#E2E8F0">14,820 tokens</text>
+      <text x="876" y="136" text-anchor="end" class="mono" font-size="11" fill="#64748B">7%</text>
+      <text x="696" y="165" class="mono" font-size="10.8" fill="#64748B">$0.02 spent</text>
+    </g>
+    <rect x="696" y="145" width="180" height="4" rx="2" fill="#1E1430" />
+    <g transform="translate(696, 145)">
+      <rect x="0" y="0" width="42" height="4" rx="2" fill="url(#synthGrad)" class="ctx-bar" />
+    </g>
+
+    <line x1="696" y1="180" x2="876" y2="180" stroke="#FFFFFF" stroke-opacity="0.07" />
+
+    <!-- LSP -->
+    <text x="696" y="200" class="sans" font-size="11.5" font-weight="600" fill="#94A3B8">LSP</text>
+    <circle cx="701" cy="218" r="3" fill="#4ADE80" />
+    <text x="712" y="222" class="mono" font-size="11" fill="#CBD5E1">typescript</text>
+
+    <circle cx="701" cy="237" r="3" fill="#4ADE80" />
+    <text x="712" y="241" class="mono" font-size="11" fill="#CBD5E1">gopls</text>
+
+    <circle cx="701" cy="256" r="3" fill="#4ADE80" />
+    <text x="712" y="260" class="mono" font-size="11" fill="#CBD5E1">pyright</text>
+
+    <circle cx="701" cy="275" r="3" fill="#4ADE80" />
+    <text x="712" y="279" class="mono" font-size="11" fill="#CBD5E1">lua_ls</text>
+
+    <line x1="696" y1="295" x2="876" y2="295" stroke="#FFFFFF" stroke-opacity="0.07" />
+
+    <!-- MCP -->
+    <text x="696" y="315" class="sans" font-size="11.5" font-weight="600" fill="#94A3B8">MCP</text>
+    <circle cx="701" cy="333" r="3" fill="#00F5FF" />
+    <text x="712" y="337" class="mono" font-size="11" fill="#CBD5E1">github</text>
+
+    <circle cx="701" cy="352" r="3" fill="#00F5FF" />
+    <text x="712" y="356" class="mono" font-size="11" fill="#CBD5E1">postgres</text>
+
+    <circle cx="701" cy="371" r="3" fill="#00F5FF" />
+    <text x="712" y="375" class="mono" font-size="11" fill="#CBD5E1">cloudflare</text>
+  </g>
+
+  <!-- ===================================================================== -->
+  <!-- CLEAN TERMINAL PROMPT (NO FAKE CLICKABLE SHORTCUTS)                   -->
+  <!-- ===================================================================== -->
+  <line x1="1.5" y1="444" x2="892.5" y2="444" stroke="#FFFFFF" stroke-opacity="0.08" stroke-width="1" />
+  <rect x="18" y="454" width="858" height="38" rx="6" fill="#0E061B" stroke="#FF2A85" stroke-opacity="0.38" stroke-width="1" />
+
+  <text x="34" y="477.5" class="mono" font-size="13" font-weight="700" fill="#FF2A85">❯</text>
+
+  <!-- State A: Typing question live -->
+  <g class="bt-phase">
+    <text x="50" y="477.5" class="mono" font-size="12" fill="#F8FAFC">who is @verte21 and what is his stack?</text>
+    <rect x="50" y="460" width="286" height="24" fill="#0E061B" class="bt-mask" />
+    <rect x="50" y="465" width="7.2" height="15" rx="1" fill="#00F5FF" class="bt-cursor" />
+  </g>
+
+  <!-- State B: Subtle streaming status -->
+  <g class="input-working">
+    <text x="50" y="477.5" class="mono spin-star" font-size="11.5" font-weight="700" fill="#FFE66D">✻</text>
+    <text x="66" y="477.5" class="mono" font-size="11.2" font-style="italic" fill="#64748B">streaming response...</text>
+  </g>
+
+  <!-- State C: Idle blinking terminal cursor -->
+  <g class="input-idle">
+    <rect x="50" y="465" width="7.2" height="15" rx="1" fill="#00F5FF" class="idle-cursor" />
+  </g>
+
+  <!-- ===================================================================== -->
+  <!-- MINIMAL NON-INTERACTIVE STATUS BAR                                    -->
+  <!-- ===================================================================== -->
+  <path d="M 1.5 504 L 892.5 504 L 892.5 524 A 10.5 10.5 0 0 1 882 534.5 L 12 534.5 A 10.5 10.5 0 0 1 1.5 524 Z" fill="#0E061A" />
+  <line x1="1.5" y1="504" x2="892.5" y2="504" stroke="#FFFFFF" stroke-opacity="0.07" stroke-width="1" />
+
+  <text x="20" y="522.5" class="mono" font-size="11" font-weight="700" fill="#FF2A85">build</text>
+  <text x="63" y="522.5" class="mono" font-size="11" fill="#475569">·</text>
+  <text x="76" y="522.5" class="mono" font-size="11" fill="#64748B">anthropic /</text>
+  <text x="155.5" y="522.5" class="mono" font-size="11" fill="#CBD5E1">claude-sonnet-4-5</text>
+  <text x="874" y="522.5" text-anchor="end" class="mono" font-size="11" fill="#64748B">~/code/verte21 (main)</text>
+</svg>
